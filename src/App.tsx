@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useAddTodo } from "./hooks/useAddTodo";
+import type { Todo } from "./hooks/useAddTodo";
 
-function App() {
+const todo: Todo = {
+  id: 1,
+  firstname: 'Taro',
+  lastname: 'Yamada',
+}
+
+export const App = () => {
+  const { postAddTodo, isSuccess } = useAddTodo();
+
+  const onSuccess = () => alert('成功！');
+  const onError = () => alert('失敗！');
+
+  const onClickButton = () => {
+    postAddTodo({ todo, onSuccess, onError });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello World!!</h1>
+      <button onClick={onClickButton}>カスタムフック実行</button>
+      <p>{isSuccess ? 'true' : 'false'}</p>
     </div>
   );
 }
-
-export default App;
