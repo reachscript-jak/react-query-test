@@ -1,5 +1,6 @@
 import { useAddTodo } from "./hooks/useAddTodo";
 import type { Todo } from "./hooks/useAddTodo";
+import { ModalDialogInputFile } from "./features/ModalDialogInputFile";
 
 const todo: Todo = {
   id: 1,
@@ -22,6 +23,8 @@ export const App = () => {
       <h1>Hello World!!</h1>
       <button onClick={onClickButton}>カスタムフック実行</button>
       <p>{isSuccess ? 'true' : 'false'}</p>
+      <hr />
+      <ModalDialogInputFile open={true} onFileChange={() => console.log('File Change!')} />
     </div>
   );
 }
